@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Cinema Seeker</string>
+    <string name="action_settings">Salir</string>
+    <string name="lblCorreo">Introduce Correo</string>
+    <string name="lblPass">Introduce Pass</string>
+    <string name="lblBoton">Entrar!</string>
+    <string name="lblOlvido">No recuerdas?</string>
+    <string name="lblAlta">Holi, ¿Nuevo por aqui?</string>
+    <string name="lblTextoVario1">Pero que cabeza!!</string>
+    <string name="lblTextoVario2">Introduce tu correo anda...</string>
+    <string name="btnReset">Recordar</string>
+    <string name="btnRegistrar">Registrar</string>
+    <string name="btnCancelar">Mejor No</string>
+    <string name="LblConfirPass">Confirmar Pass</string>
+    <string name="lblNuevoCorreo">Correo</string>
+    <string name="LblNuevaPass">Introduce Pass</string>
+    <string name="lblConfirmarPass">Confirma Pass</string>
+
+</resources>

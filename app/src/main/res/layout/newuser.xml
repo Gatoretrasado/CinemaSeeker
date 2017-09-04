@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin">
+
+    <TextView
+        android:id="@+id/lblNuevoCorreo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/txtNuevoCorreo"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:text="@string/lblNuevoCorreo"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        android:layout_alignRight="@+id/txtNuevoCorreo"
+        android:layout_alignParentLeft="true" />
+
+    <EditText
+        android:id="@+id/txtNuevoCorreo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/lblNuevoCorreo"
+        android:ems="10"
+        android:hint="@string/lblCorreo"
+        android:inputType="textEmailAddress"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentLeft="true" />
+
+    <TextView
+        android:id="@+id/lblNuevaPass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/txtNuevoCorreo"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/txtNuevoCorreo"
+        android:text="@string/LblNuevaPass"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        android:layout_alignRight="@+id/txtNuevoCorreo"
+        android:layout_alignParentLeft="true" />
+
+    <EditText
+        android:id="@+id/txtNuevaPass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/lblNuevaPass"
+        android:layout_toEndOf="@+id/lblNuevaPass"
+        android:hint="@string/lblPass"
+        android:inputType="textPassword"
+        android:maxLength="10"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentLeft="true"
+        android:layout_toRightOf="@+id/lblNuevaPass" />
+
+    <Button
+        android:id="@+id/btnAceptar"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:background="#428bca"
+        android:text="@string/btnRegistrar"
+        android:textStyle="bold"
+        android:layout_alignParentLeft="true" />
+
+    <Button
+        android:id="@+id/btnCancelar"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/btnAceptar"
+        android:background="#d9534f"
+        android:text="@string/btnCancelar"
+        android:textStyle="bold"
+        android:layout_alignParentRight="true" />
+
+    <TextView
+        android:id="@+id/lblNuevaPass2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/txtNuevaPass2"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/txtNuevaPass"
+        android:text="@string/LblConfirPass"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        android:layout_alignRight="@+id/txtNuevaPass2"
+        android:layout_alignParentLeft="true" />
+
+    <EditText
+        android:id="@+id/txtNuevaPass2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/lblNuevaPass2"
+        android:hint="@string/lblConfirmarPass"
+        android:inputType="textPassword"
+        android:maxLength="10"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentLeft="true" />
+
+</RelativeLayout>
