@@ -4,19 +4,13 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-
-import com.google.firebase.auth.FirebaseAuth;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -25,10 +19,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 
 
 public class MyActivity extends Activity implements ListView.OnItemClickListener{
@@ -41,8 +32,6 @@ public class MyActivity extends Activity implements ListView.OnItemClickListener
     //Array para los numeros
     String[] mediaArray;
 
-    int imagenes[] = { R.drawable.toledo, R.drawable.ciudadreal, R.drawable.albacete,
-            R.drawable.cuenca, R.drawable.guadalajara};
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -79,8 +68,6 @@ public class MyActivity extends Activity implements ListView.OnItemClickListener
             TextView media = (TextView) miFila.findViewById(R.id.media);
             media.setText(mediaArray[position]+"/5");
 
-           /* ImageView imagen = (ImageView) miFila.findViewById(R.id.imagenCiudad);
-            imagen.setImageResource(imagenes[position]);*/
 
             return miFila;
 
@@ -110,24 +97,7 @@ public class MyActivity extends Activity implements ListView.OnItemClickListener
         selectorCiudades.setOnItemClickListener(this);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.my, menu);
-        return true;
-    }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            FirebaseAuth.getInstance().signOut();
-        }
-        return super.onOptionsItemSelected(item);
-    }
 
     Thread sqlThread = new Thread() {
         public void run() {

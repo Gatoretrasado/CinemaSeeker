@@ -41,7 +41,6 @@ public class newUser extends Activity{
         txtNuevoCorreo = (EditText)findViewById(R.id.txtNuevoCorreo);
         txtNuevaPass = (EditText)findViewById(R.id.txtNuevaPass);
         txtNuevaPass2 = (EditText)findViewById(R.id.txtNuevaPass2);
-        //getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
         Button  aceptar = (Button)findViewById(R.id.btnAceptar);
         aceptar.setOnClickListener(new View.OnClickListener() {

@@ -2,15 +2,22 @@ package com.example.ilm.spinnerpersonal;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -31,19 +38,25 @@ public class cine extends Activity{
     Connection conn;
     Statement st;
     ResultSet rs;
+    static String UrlFoto = "https://uranogames.com/protecto/patata.jpg";
+    static Bitmap bitmap = null;
+    ImageView foto;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cine);
 
         nombreCine = getIntent().getStringExtra("cine");
+
         sqlThread.start();
         try {
             sqlThread.join();
         } catch (InterruptedException e) {
-            System.out.println("mierda");
+            System.out.println("Algo salio mal");
         }
-        System.out.println("ESTAS VIVO?"+sqlThread.isAlive());
+        //System.out.println("ESTAS VIVO?"+sqlThread.isAlive());
+        bitmap = null;
+        new Fotos(cine.this).execute();
 
         TextView c=(TextView) this.findViewById(R.id.textNombre);
         c.setText(nombreCine);
@@ -53,6 +66,11 @@ public class cine extends Activity{
         salas.setText("Nº Salas:  "+salasAux);
         RatingBar estrellas = (RatingBar) findViewById(R.id.ratingBar2);
         estrellas.setRating(mediaOld);
+
+        while (bitmap == null) {
+            System.out.println("NOOOOOO!!!!");
+        }
+
 
         calle.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,12 +98,6 @@ public class cine extends Activity{
                 RatingBar votoCine = (RatingBar) findViewById(R.id.ratingBar2);
                 voto =  votoCine.getRating();
 
-               /* botonVotar1.run();
-                try {
-                    botonVotar1.join();
-                } catch (InterruptedException e) {
-                    System.out.println("Fallo al guardar");
-                }*/
                 new Insertar(cine.this).execute();
 
                 Toast toast2 = Toast.makeText(getApplicationContext(),
@@ -106,7 +118,7 @@ public class cine extends Activity{
                  conn = DriverManager.getConnection(
                          "jdbc:mysql://vl19819.dinaserver.com/cinesjose", "cinesjose", "CinesJose12");
                 //En el stsql se puede agregar cualquier consulta SQL deseada.
-                String stsql = "SELECT `Direccion`,`Salas`,`Media`,`Votos`,`Cartelera`,`Maps` FROM `cines` WHERE `Nombre` LIKE '"+nombreCine+"'";
+                String stsql = "SELECT `Direccion`,`Salas`,`Media`,`Votos`,`Cartelera`,`Maps`,`image` FROM `cines` WHERE `Nombre` LIKE '" + nombreCine + "'";
                  st = conn.createStatement();
                  rs = st.executeQuery(stsql);
                 rs.next();
@@ -117,6 +129,7 @@ public class cine extends Activity{
                 cine.votosOld = rs.getInt(4);
                 cine.cartAux =rs.getString(5)+"";
                 cine.maps =rs.getString(6)+"";
+                cine.UrlFoto = rs.getString(7);
 
                 System.out.println(conn.isClosed());
 
@@ -201,7 +214,64 @@ public class cine extends Activity{
                 });
             return null;
         }
-    }}
+    }
+
+    private boolean fotos() {
+
+        try {
+            java.net.URL url = new java.net.URL(UrlFoto);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setDoInput(true);
+            connection.connect();
+            InputStream input = connection.getInputStream();
+            bitmap = BitmapFactory.decodeStream(input);
+
+            foto = (ImageView) findViewById(R.id.foto);
+            foto.setImageBitmap(bitmap);
+            foto.refreshDrawableState();
+
+            connection.disconnect();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("holi");
+
+        }
+        return false;
+    }
+
+    class Fotos extends AsyncTask<String, String, String> {
+
+        private Activity context;
+
+        Fotos(Activity context) {
+            this.context = context;
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
+            // TODO Auto-generated method stub
+            if (fotos())
+                context.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        // TODO Auto-generated method stub
+
+                    }
+                });
+            else
+                context.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        // TODO Auto-generated method stub
+
+                    }
+                });
+            return null;
+        }
+    }
+
+}
 
 
 

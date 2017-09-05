@@ -11,7 +11,6 @@ import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -49,7 +48,6 @@ public class login extends Activity {
 
         txtCorreo = (EditText) findViewById(R.id.txtCorreo);
         txtPass = (EditText) findViewById(R.id.txtPassword);
-        //Cargamos las preferencias guardadas
         preferencias = getSharedPreferences("checkRecordar", Context.MODE_PRIVATE);
 
         Bundle extras = getIntent().getExtras();
@@ -60,7 +58,6 @@ public class login extends Activity {
             editor.putBoolean("recordar", false);
             editor.apply();
         }
-
 
 
         if ( !desconectado) {

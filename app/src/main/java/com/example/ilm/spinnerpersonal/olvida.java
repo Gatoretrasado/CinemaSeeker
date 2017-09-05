@@ -26,7 +26,6 @@ public class olvida extends Activity{
 
         ResetCorreo = (EditText)findViewById(R.id.txtCorreoOlvidado);
 
-        //getSupportActionBar().setDisplayHomeAsUpEnabled(false);
 
         Button reset = (Button)findViewById(R.id.btnPassReset);
         reset.setOnClickListener(new View.OnClickListener() {
